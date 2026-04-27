@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TMU Assistant Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+
+    
+  
+    :root{
+      --bg:#f5f7fb;
+      --card:#ffffff;
+      --text:#1f2937;
+      --sub:#6b7280;
+      --brand:#800000;
+      --brand2:#b22222;
+      --accent:#e5e7eb;
+      --bubble-user:#800000;
+      --bubble-bot:#f3f4f6;
+      --shadow:0 10px 30px rgba(0,0,0,.08)
+    }
+
+    .dark{
+      --bg:#0b0e13;
+      --card:#12161d;
+      --text:#e5e7eb;
+      --sub:#9aa3af;
+      --brand:#a01c1c;
+      --brand2:#c43a3a;
+      --accent:#1f2430;
+      --bubble-user:#a01c1c;
+      --bubble-bot:#1a1f29;
+      --shadow:0 10px 30px rgba(0,0,0,.4)
+    }
+
+  
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
+
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(128,0,0,.12), transparent 60%),
+        radial-gradient(1000px 500px at 120% 10%, rgba(178,34,34,.12), transparent 50%),
+        var(--bg);
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 24px;
+      background:var(--card);
+      border-bottom:1px solid var(--accent);
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
+
+    .top-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .top-left img{
+      width:40px;
+      height:40px;
+      border-radius:8px;
+    }
+
+    .h-title{
+      font-weight:700;
+      font-size:1rem;
+    }
+
+    .h-sub{
+      font-size:.85rem;
+      color:var(--sub);
+    }
+
+    .top-right{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      font-size:.9rem;
+      color:var(--sub);
+    }
+
+    .btn{
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#fff;
+      border:none;
+      border-radius:10px;
+      padding:6px 12px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+ 
+    .wrap{
+      max-width:1200px;
+      margin:24px auto;
+      padding:16px;
+    }
+
+    .board{
+      display:grid;
+      grid-template-columns:420px 1fr;
+      gap:20px;
+    }
+
+    @media (max-width: 900px){
+      .board{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--accent);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+    }
+
+    .slider{
+      position:relative;
+      overflow:hidden;
+      min-height:78vh;
+    }
+
+    @media (max-width:900px){
+      .slider{
+        min-height:240px;
+      }
+    }
+
+    .slides{
+      width:100%;
+      height:100%;
+      position:relative;
+    }
+
+    .slides img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:0;
+      transition:opacity 1s ease-in-out;
+    }
+
+    .slides img.active{
+      opacity:1;
+    }
+
+    .slider-overlay{
+      position:absolute;
+      left:20px;
+      right:20px;
+      bottom:24px;
+      background:linear-gradient(
+        to top,
+        rgba(0,0,0,.65),
+        rgba(0,0,0,.25)
+      );
+      color:#fff;
+      padding:18px;
+      border-radius:16px;
+    }
+
+    .slider-overlay h2{
+      margin:0 0 6px;
+      font-size:1.4rem;
+      font-weight:700;
+    }
+
+    .slider-overlay p{
+      margin:0;
+      font-size:.95rem;
+      opacity:.9;
+    }
+
+  
+    .chat{
+      display:flex;
+      flex-direction:column;
+      height:78vh;
+      min-height:540px;
+    }
+
+    .head{
+      padding:14px 18px;
+      border-bottom:1px solid var(--accent);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+    }
+
+    .title .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+    }
+
+    .feed{
+      flex:1;
+      overflow:auto;
+      padding:18px;
+      scroll-behavior:smooth;
+    }
+
+    .row{
+      display:flex;
+      gap:10px;
+      margin:12px 0;
+      align-items:flex-end;
+      animation:slideUp .25s ease-out;
+    }
+
+    @keyframes slideUp{
+      from{opacity:0; transform:translateY(6px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
+    .row.user{ justify-content:flex-end }
+
+    .avatar{
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      background:var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:.8rem;
+      color:var(--sub);
+    }
+
+    .bubble{
+      max-width:72%;
+      padding:12px 14px;
+      border-radius:16px;
+      font-size:.97rem;
+      line-height:1.6;
+      box-shadow:0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .user .bubble{
+      background:var(--bubble-user);
+      color:#fff;
+      border-bottom-right-radius:6px;
+    }
+
+    .bot .bubble{
+      background:var(--bubble-bot);
+      color:var(--text);
+      border-bottom-left-radius:6px;
+    }
+
+    .time{
+      font-size:.75rem;
+      color:var(--sub);
+      margin:0 6px;
+    }
+
+    .composer{
+      padding:12px;
+      border-top:1px solid var(--accent);
+      display:flex;
+      gap:10px;
+    }
+
+    .field{
+      flex:1;
+      display:flex;
+      align-items:center;
+      background:var(--bubble-bot);
+      border-radius:14px;
+      padding:10px 12px;
+      border:1px solid var(--accent);
+    }
+
+    .field input{
+      flex:1;
+      border:none;
+      background:transparent;
+      font-size:1rem;
+      color:var(--text);
+      outline:none;
+    }
+
+    .send{
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      border:none;
+      cursor:pointer;
+      background:linear-gradient(135deg,var(--brand),var(--brand2));
+      color:#fff;
+      font-size:1.1rem;
+      font-weight:700;
+    }
+
+    .footer{
+      text-align:center;
+      padding:16px;
+      font-size:.85rem;
+      color:var(--sub);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="top-left">
+      <img src="https://www.getadmissioninfo.com/uploads/topics/TEERTHANKER%20MAHAVEER%20UNIVERSITY.png" alt="TMU Logo">
+      <div>
+        <div class="h-title">TMU Assistant Bot</div>
+        <div class="h-sub">Teerthanker Mahaveer University</div>
+      </div>
+    </div>
+
+    <div class="top-right">
+      <span>Academic Project</span>
+      <button class="btn" id="toggleThemeTop">Dark Mode</button>
+    </div>
+  </header>
+
+ 
+  <main class="wrap">
+    <div class="board">
+
+      
+      <aside class="card slider">
+        <div class="slides">
+          <img src="https://www.tmu.ac.in/assets/img/footer_pages/infra/campus-grid-2.webp" class="active" alt="TMU Campus">
+          <img src="https://www.tmu.ac.in/assets/img/footer_pages/infra/1.jpg" alt="TMU Campus">
+          <img src="https://www.tmu.ac.in/uploads/events/past_event/535_image1.jpg" alt="TMU Campus">
+        </div>
+
+        <div class="slider-overlay">
+          <h2>Welcome to TMU</h2>
+          <p>Explore courses, admissions, facilities & campus life</p>
+        </div>
+      </aside>
+
+    
+      <section class="card chat">
+
+     
+        <div class="head">
+          <div class="title">
+            <span class="dot"></span>
+            Chat Assistant
+          </div>
+
+          <div class="tog">
+            <span class="hint">Dark mode</span>
+            <div class="switch" id="themeSwitch">
+              <div class="knob"></div>
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="feed" id="feed">
+         
+        </div>
+
+       
+        <div class="composer">
+          <div class="field">
+            <input
+              id="input"
+              type="text"
+              placeholder="Ask about TMU courses, BCA, fees, admissions..."
+              autocomplete="off"
+            />
+          </div>
+          <button class="send" id="sendBtn">›</button>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+
+  <footer class="footer">
+    TMU Assistant Bot • Academic Project • Not an official TMU service
+  </footer>
+
+  <script>
+
+const slides = document.querySelectorAll('.slides img');
+let slideIndex = 0;
+
+function showSlide(){
+  slides.forEach(s => s.classList.remove('active'));
+  slides[slideIndex].classList.add('active');
+  slideIndex = (slideIndex + 1) % slides.length;
+}
+showSlide();
+setInterval(showSlide, 3500);
+
+
+const feed = document.getElementById('feed');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('sendBtn');
+const themeSwitch = document.getElementById('themeSwitch');
+const themeTop = document.getElementById('toggleThemeTop');
+
+function nowHM(){
+  return new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+}
+
+function formatText(text){
+  if(!text) return '';
+  return text
+    .replace(/\n/g, '<br>')
+    .replace(/https?:\/\/\S+/g, url =>
+      `<a class="link" href="${url}" target="_blank">${url}</a>`
+    );
+}
+
+
+function addMessage(who, text, time){
+  const row = document.createElement('div');
+  row.className = `row ${who}`;
+
+  const avatar = document.createElement('div');
+  avatar.className = 'avatar';
+  avatar.textContent = who === 'user' ? 'You' : 'TMU';
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble';
+  bubble.innerHTML = formatText(text);
+
+  const tm = document.createElement('div');
+  tm.className = 'time';
+  tm.textContent = time || nowHM();
+
+  row.appendChild(avatar);
+  row.appendChild(bubble);
+  row.appendChild(tm);
+
+  feed.appendChild(row);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+
+function showTyping(show){
+  let typing = document.getElementById('typing');
+
+  if(show && !typing){
+    typing = document.createElement('div');
+    typing.id = 'typing';
+    typing.className = 'row bot';
+    typing.innerHTML = `
+      <div class="avatar">TMU</div>
+      <div class="bubble">Typing...</div>
+      <div class="time">${nowHM()}</div>
+    `;
+    feed.appendChild(typing);
+    feed.scrollTop = feed.scrollHeight;
+  }
+
+  if(!show && typing){
+    typing.remove();
+  }
+}
+
+
+async function ask(question){
+  if(!question.trim()) return;
+
+  addMessage('user', question);
+  input.value = '';
+  showTyping(true);
+
+  try{
+    const res = await fetch('/ask', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({question})
+    });
+
+    const data = await res.json();
+    showTyping(false);
+
+    const delay = Math.min(1200, (data.answer || '').length * 18);
+    setTimeout(() => {
+      addMessage('bot', data.answer || 'No response', data.timestamp);
+    }, delay);
+
+  }catch(err){
+    showTyping(false);
+    addMessage('bot', 'Server error. Please try again.');
+  }
+}
+
+
+sendBtn.addEventListener('click', () => ask(input.value));
+
+input.addEventListener('keydown', e => {
+  if(e.key === 'Enter'){
+    e.preventDefault();
+    ask(input.value);
+  }
+});
+
+
+function applyTheme(){
+  const mode = localStorage.getItem('tmu_theme') || 'light';
+  document.documentElement.classList.toggle('dark', mode === 'dark');
+}
+
+function toggleTheme(){
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('tmu_theme', isDark ? 'dark' : 'light');
+}
+
+themeSwitch.addEventListener('click', toggleTheme);
+themeTop.addEventListener('click', toggleTheme);
+applyTheme();
+
+
+addMessage(
+  'bot',
+  'Hi! I am the TMU Assistant Bot. Ask me about courses, BCA, fees, admissions, facilities, and placements.'
+);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,411 @@
+{
+  "intents": [
+
+    {
+      "tag": "greeting",
+      "patterns": ["hi", "hello", "hey", "hlo", "good morning", "good evening"],
+      "responses": [
+        "Hello! How can I help you?",
+        "Hi there! How can I assist you today?",
+        "Hey! Ask me anything about TMU."
+      ]
+    },
+
+    {
+      "tag": "tmu_info",
+      "patterns": [
+        "tell me about tmu",
+        "what is tmu",
+        "full form of tmu",
+        "where is tmu located",
+        "tmu location",
+        "is tmu ugc approved",
+        "is tmu naac accredited",
+        "is tmu private or government",
+        "when was tmu established"
+      ],
+      "responses": [
+        "Teerthanker Mahaveer University (TMU) is a private university in Moradabad, Uttar Pradesh, established in 2008. It offers programs in engineering, management, medical sciences, law, pharmacy, and more."
+      ]
+    },
+
+    {
+      "tag": "tmu_contact",
+      "patterns": [
+        "official website of tmu",
+        "tmu official website",
+        "how to contact tmu",
+        "contact number of tmu",
+        "email of tmu"
+      ],
+      "responses": [
+        "You can visit TMU official website: https://www.tmu.ac.in or contact via https://www.tmu.ac.in/contact-us"
+      ]
+    },
+
+    {
+      "tag": "courses",
+      "patterns": [
+        "what courses are offered in tmu",
+        "courses in tmu",
+        "programs offered by tmu"
+      ],
+      "responses": [
+        "TMU offers courses in Engineering, Computer Applications, Management, Commerce, Law, Medical Sciences, Pharmacy, Nursing, Agriculture, and more."
+      ]
+    },
+
+    {
+      "tag": "bca",
+      "patterns": [
+        "what is bca",
+        "bca course in tmu",
+        "tell me about bca in tmu",
+        "bca eligibility",
+        "bca fees in tmu",
+        "bca syllabus in tmu",
+        "career after bca"
+      ],
+      "responses": [
+        "BCA is a 3-year undergraduate program covering programming, DBMS, web development, and AI basics. Fee is approx ₹30,500 per semester. Careers include developer, analyst, or MCA."
+      ]
+    },
+
+    {
+      "tag": "mca",
+      "patterns": [
+        "what is mca",
+        "mca course in tmu",
+        "mca eligibility",
+        "mca fees in tmu"
+      ],
+      "responses": [
+        "MCA is a postgraduate program focused on advanced software development, databases, and networking."
+      ]
+    },
+
+    {
+      "tag": "btech",
+      "patterns": [
+        "btech course in tmu",
+        "btech in tmu",
+        "engineering courses in tmu",
+        "btech eligibility",
+        "btech fees in tmu",
+        "btech branches in tmu"
+      ],
+      "responses": [
+        "TMU offers B.Tech in CSE, Mechanical, Civil, Electrical, AI & ML, and Data Science. Eligibility requires 10+2 with PCM."
+      ]
+    },
+
+    {
+      "tag": "mtech",
+      "patterns": [
+        "mtech course in tmu",
+        "mtech eligibility",
+        "mtech fees in tmu"
+      ],
+      "responses": [
+        "M.Tech is a postgraduate engineering program requiring a B.Tech degree."
+      ]
+    },
+
+    {
+      "tag": "bba",
+      "patterns": [
+        "what is bba",
+        "bba course in tmu",
+        "bba eligibility",
+        "bba fees in tmu",
+        "career after bba"
+      ],
+      "responses": [
+        "BBA is a 3-year business management course covering marketing, HR, and finance."
+      ]
+    },
+
+    {
+      "tag": "mba",
+      "patterns": [
+        "what is mba",
+        "mba course in tmu",
+        "mba eligibility",
+        "mba fees in tmu",
+        "career after mba"
+      ],
+      "responses": [
+        "MBA is a postgraduate management program leading to careers in business, finance, and leadership roles."
+      ]
+    },
+
+    {
+      "tag": "law",
+      "patterns": [
+        "law course in tmu",
+        "ba llb in tmu",
+        "bba llb in tmu",
+        "llb in tmu",
+        "law eligibility in tmu"
+      ],
+      "responses": [
+        "TMU offers BA LLB, BBA LLB, and LLB programs for legal education."
+      ]
+    },
+
+    {
+      "tag": "pharmacy",
+      "patterns": [
+        "pharmacy course in tmu",
+        "bpharm in tmu",
+        "dpharm in tmu",
+        "pharmacy eligibility"
+      ],
+      "responses": [
+        "TMU offers D.Pharm, B.Pharm, and M.Pharm programs for pharmaceutical studies."
+      ]
+    },
+
+    {
+      "tag": "nursing",
+      "patterns": [
+        "nursing course in tmu",
+        "bsc nursing in tmu",
+        "gnm in tmu",
+        "anm in tmu",
+        "nursing eligibility"
+      ],
+      "responses": [
+        "TMU offers B.Sc Nursing, GNM, and ANM programs for healthcare education."
+      ]
+    },
+
+    {
+      "tag": "admission",
+      "patterns": [
+        "admission process in tmu",
+        "how to get admission in tmu",
+        "how to apply in tmu",
+        "documents required for admission in tmu"
+      ],
+      "responses": [
+        "Admission process: choose course → fill application → submit documents → pay fees. Visit https://www.tmu.ac.in/admissions"
+      ]
+    },
+
+    {
+      "tag": "facilities",
+      "patterns": [
+        "does tmu have hostel facilities",
+        "hostel in tmu",
+        "campus facilities in tmu",
+        "does tmu have library",
+        "does tmu have wifi",
+        "does tmu have transport"
+      ],
+      "responses": [
+        "TMU provides hostels, library, labs, WiFi, sports, cafeteria, transport, and medical facilities."
+      ]
+    },
+
+    {
+      "tag": "placements",
+      "patterns": [
+        "does tmu have placement opportunities",
+        "placements in tmu",
+        "companies visiting tmu",
+        "highest package in tmu"
+      ],
+      "responses": [
+        "TMU has a placement cell with companies like TCS, Infosys, Wipro, and HCL."
+      ]
+    },
+
+    {
+      "tag": "student_life",
+      "patterns": [
+        "campus life in tmu",
+        "events in tmu",
+        "is tmu good for students"
+      ],
+      "responses": [
+        "TMU offers a vibrant campus life with academics, events, sports, and student activities."
+      ]
+    },
+
+    {
+      "tag": "bot",
+      "patterns": [
+        "who created you",
+        "what can you do",
+        "thanks",
+        "thank you",
+        "bye"
+      ],
+      "responses": [
+        "I am a TMU chatbot created as a college project. I can help with courses, fees, admissions, and more."
+      ]
+    },
+
+    {
+  "tag": "mba",
+  "patterns": [
+    "what is mba",
+    "mba course in tmu",
+    "mba eligibility",
+    "mba fees in tmu",
+    "career after mba"
+  ],
+  "responses": [
+    "MBA is a postgraduate management program focused on business, finance, marketing, and leadership careers."
+  ]
+},
+{
+  "tag": "commerce",
+  "patterns": [
+    "bcom course in tmu",
+    "bcom eligibility",
+    "bcom fees in tmu",
+    "mcom course in tmu",
+    "mcom eligibility"
+  ],
+  "responses": [
+    "TMU offers B.Com and M.Com programs focused on accounting, finance, taxation, and business studies."
+  ]
+},
+{
+  "tag": "law",
+  "patterns": [
+    "law course in tmu",
+    "ba llb in tmu",
+    "bba llb in tmu",
+    "llb in tmu",
+    "law eligibility in tmu"
+  ],
+  "responses": [
+    "TMU offers BA LLB, BBA LLB, and LLB programs for students interested in legal education."
+  ]
+},
+{
+  "tag": "pharmacy",
+  "patterns": [
+    "pharmacy course in tmu",
+    "bpharm in tmu",
+    "dpharm in tmu",
+    "pharmacy eligibility"
+  ],
+  "responses": [
+    "TMU offers D.Pharm, B.Pharm, and M.Pharm programs for pharmaceutical sciences."
+  ]
+},
+{
+  "tag": "nursing",
+  "patterns": [
+    "nursing course in tmu",
+    "bsc nursing in tmu",
+    "gnm in tmu",
+    "anm in tmu",
+    "nursing eligibility"
+  ],
+  "responses": [
+    "TMU offers B.Sc Nursing, GNM, and ANM programs for healthcare and nursing education."
+  ]
+},
+{
+  "tag": "medical",
+  "patterns": [
+    "medical courses in tmu",
+    "paramedical courses in tmu",
+    "dental courses in tmu"
+  ],
+  "responses": [
+    "TMU offers medical, dental, paramedical, and allied health science programs."
+  ]
+},
+{
+  "tag": "agriculture",
+  "patterns": [
+    "agriculture courses in tmu",
+    "bsc agriculture in tmu"
+  ],
+  "responses": [
+    "TMU offers agriculture programs including B.Sc Agriculture for crop and soil sciences."
+  ]
+},
+{
+  "tag": "admission",
+  "patterns": [
+    "admission process in tmu",
+    "how to get admission in tmu",
+    "how to apply in tmu",
+    "documents required for admission in tmu"
+  ],
+  "responses": [
+    "Admission process: choose course → fill application → submit documents → pay fees. Visit https://www.tmu.ac.in/admissions"
+  ]
+},
+{
+  "tag": "fees_scholarship",
+  "patterns": [
+    "fee structure of tmu",
+    "scholarship in tmu",
+    "does tmu provide scholarship"
+  ],
+  "responses": [
+    "TMU fee structure varies by course. Scholarships may be available based on merit and eligibility."
+  ]
+},
+{
+  "tag": "facilities",
+  "patterns": [
+    "does tmu have hostel facilities",
+    "hostel in tmu",
+    "hostel fees in tmu",
+    "campus facilities in tmu",
+    "does tmu have library",
+    "does tmu have wifi",
+    "does tmu have transport"
+  ],
+  "responses": [
+    "TMU provides hostels, library, labs, Wi-Fi, sports, cafeteria, transport, and medical facilities."
+  ]
+},
+{
+  "tag": "placements",
+  "patterns": [
+    "does tmu have placement opportunities",
+    "placements in tmu",
+    "companies visiting tmu",
+    "highest package in tmu"
+  ],
+  "responses": [
+    "TMU has a placement cell with companies like TCS, Infosys, Wipro, and HCL."
+  ]
+},
+{
+  "tag": "student_life",
+  "patterns": [
+    "campus life in tmu",
+    "events in tmu",
+    "is tmu good for students"
+  ],
+  "responses": [
+    "TMU offers a vibrant campus life with academics, events, sports, and student activities."
+  ]
+},
+{
+  "tag": "bot",
+  "patterns": [
+    "who created you",
+    "what can you do",
+    "thanks",
+    "thank you",
+    "bye"
+  ],
+  "responses": [
+    "I am a TMU chatbot created as a college project. I can help with courses, fees, admissions, and more."
+  ]
+}
+
+  ]
+}
